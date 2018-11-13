@@ -36,6 +36,7 @@ include_line = True
 with fileinput.input(sys.argv[1], inplace=True, backup='.bak') as f:
   for line in f:
     if '#include <iostream>' in line:
+      pass
     elif '#reflect_class' in line:
       if include_line:
         print('#include <iostream>')
@@ -59,9 +60,8 @@ with fileinput.input(sys.argv[1], inplace=True, backup='.bak') as f:
         line = next(f)
 
       print('\nstd::ostream& operator<<(std::ostream& os, const ' + class_name + ' &class_t) {')
-      print('  os ', end='')
       for name in class_list[class_name]:
-        print('  << class_t.' + name + '<< \'\\n\'', end='')
-      print(';\n  return os;\n}')
+        print(' os << class_t.' + name + '<< \'\\n\';')
+      print('\n  return os;\n}')
     else:
       print(line, end='')
