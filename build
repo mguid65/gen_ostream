@@ -1,9 +1,8 @@
 #!/bin/bash
 
+python3 gen_ostream.py test_class.h
 
+g++ main.cpp test_class.h
 
-python3 gen_ostream.py test_message.h
-
-g++ main.cpp test_message.h
-
-mv test_message.h.bak test_message.h
+mv test_class.h.bak test_class.h
+rm test_class.h.gch

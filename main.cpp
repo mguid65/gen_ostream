@@ -1,7 +1,24 @@
-#include "test_message.h"
+#include "test_class.h"
 #include <iostream>
+#include <string>
+#include <vector>
 
 int main() {
-  TestMessage t("0000000000000001", 1542213246, "127.0.0.1", "127.0.0.1", "Test Content");
-  std::cout << t;
+  std::ios_base::sync_with_stdio(false);
+  std::vector<TestClass> messages;
+  for(long long i = 0; i < 10000; i++){
+    messages.push_back(TestClass(i, "test string 0",
+				"test string 1",
+				"test string 2",
+				"test string 3",
+				"test string 4",
+				"test string 5",
+				"test string 6",
+				"test string 7",
+				"test string 8",
+				"test string 9"
+));
+  }
+
+  for(TestClass &t: messages) std::cout << t;
 }
