@@ -38,3 +38,18 @@ public:
 #class_printer
 };
 #parse_end
+
+#parse_class
+class TestClass2 {
+public:
+  TestClass2() {}
+  TestClass2(std::string test_string_0, std::string test_private_string_0) :
+             test_string_0(test_string_0), test_private_string_0(test_private_string_0) {}
+#parse_var
+  std::string test_string_0;
+private:
+#parse_var
+  std::string test_private_string_0;
+#class_printer
+};
+#parse_end
