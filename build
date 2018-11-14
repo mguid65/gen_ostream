@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+
+python3 gen_ostream.py test_message.h
+
+g++ main.cpp test_message.h
+
+mv test_message.h.bak test_message.h

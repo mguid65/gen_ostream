@@ -13,7 +13,7 @@ current_class = ''
 
 with open(sys.argv[1]) as f:
   for line in f:
-    if '#reflect_class' in line:
+    if '#parse_class' in line:
       line = next(f)
       class_vars = []
       class_name = ''
@@ -21,7 +21,7 @@ with open(sys.argv[1]) as f:
         class_info = re.split('\W+', line)
         class_name = class_info[1]
       current_class = class_name
-    elif '#reflect_var' in line:
+    elif '#parse_var' in line:
       line = next(f)
       split_point = 0
       for word in line.split():
@@ -37,7 +37,7 @@ with fileinput.input(sys.argv[1], inplace=True, backup='.bak') as f:
   for line in f:
     if '#include <iostream>' in line:
       pass
-    elif '#reflect_class' in line:
+    elif '#parse_class' in line:
       if include_line:
         print('#include <iostream>')
         include_line = False
@@ -50,12 +50,12 @@ with fileinput.input(sys.argv[1], inplace=True, backup='.bak') as f:
         class_name = class_info[1]
       line = next(f)
       while '#class_printer' not in line:
-        if '#reflect_var' not in line:
+        if '#parse_var' not in line:
           print(line, end='')
         line = next(f)
       line = next(f)
       print('\npublic:\nfriend std::ostream& operator<<(std::ostream& os, const ' + class_name + ' &class_t);\n')
-      while '#reflect_end' not in line:
+      while '#parse_end' not in line:
         print(line, end='')
         line = next(f)
 

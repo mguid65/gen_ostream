@@ -1,7 +1,7 @@
-#include "test_refl.h"
+#include "test_message.h"
 #include <iostream>
 
 int main() {
-  TestClass t(123, "test1", "test2", 12345678910);
+  TestMessage t("0000000000000001", 1542213246, "127.0.0.1", "127.0.0.1", "Test Content");
   std::cout << t;
 }
