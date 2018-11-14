@@ -57,7 +57,6 @@ with fileinput.input(sys.argv[1], inplace=True, backup='.bak') as f:
         print('#include <iostream>')
         include_line = False
       line = next(f)
-      ##print(line, end='')
       class_name = ''
       while class_name == '':
         print(line, end='')
@@ -69,14 +68,14 @@ with fileinput.input(sys.argv[1], inplace=True, backup='.bak') as f:
           print(line, end='')
         line = next(f)
       line = next(f)
-      print('\npublic:\nfriend std::ostream& operator<<(std::ostream& os, const ' + class_name + ' &class_t);\n')
+      print('\npublic:\n  friend std::ostream& operator<<(std::ostream& os, const ' + class_name + ' &class_t);\n')
       while '#parse_end' not in line:
         print(line, end='')
         line = next(f)
 
       print('\nstd::ostream& operator<<(std::ostream& os, const ' + class_name + ' &class_t) {')
       for name in class_list[class_name]:
-        print(' os << class_t.' + name + '<< \'\\n\';')
+        print('  os << class_t.' + name + ' << \'\\n\';')
       print('\n  return os;\n}')
     else:
       print(line, end='')
